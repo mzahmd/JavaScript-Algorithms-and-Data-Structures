@@ -20,6 +20,8 @@ function checkCashRegister(price, cash, cid) {
     let res;
     let key;
     let value;
+    let amount = 0;
+    let wasInWhile = false;
 
     copyCid.reverse();
 
@@ -28,47 +30,39 @@ function checkCashRegister(price, cash, cid) {
         value = element[1] * 100;
 
 
-        console.log(element)
-        // console.log("key " + key);
-        // console.log("value " + value);
-        // console.log();
-
-        console.log("money " + money[key]);
-        console.log("key " + change);
-
-
-        if (change >= money[key]) {
-            console.log("gepusht")
-            arr.push([key, element[1]]);
-            while (change >= 0 && value > 0 && change >= money[key]) {
-                change = change - money[key];
-                console.log("change " + change);
-                // console.log(money[key]);
-                // console.log();
-                value--;
-            }
+        while (change > 0 && value > 0 && change >= money[key]) {
+            change = change - money[key];
+            value -= money[key];
+            amount++;
+            wasInWhile = true;
         }
 
-        count++;
-    });
 
-    // console.log(change);
-    console.log("Mein arr:");
-    console.log(arr);
-    console.log();
+        if (wasInWhile) {
+            arr.push([key, (money[key] / 100) * amount]);
+        }
+
+        wasInWhile = false;
+        amount = 0;
+
+        count++;
+        if (change === 0) {
+            return;
+        }
+    });
 
     if (change == 0 && count === 1) {
         status = "CLOSED"
         res = {
             status: status,
-            changed: cid
+            change: cid
         };
     } else if (change == 0 && count > 1) {
-        arr.map(elem => elem[1]/100);
+        arr.map(elem => elem[1] / 100);
         status = "OPEN"
         res = {
             status: status,
-            changed: arr
+            change: arr
         };
     } else {
         status = "INSUFFICIENT_FUNDS";
@@ -78,18 +72,12 @@ function checkCashRegister(price, cash, cid) {
         };
     }
 
-    console.log()
-    console.log("===========")
-    console.log()
-    console.log("FINISH")
-    console.log()
-    console.log(res);
-
     return res;
 }
 
 
-checkCashRegister(3.26, 100, [
+
+const x = checkCashRegister(3.26, 100, [
     ["PENNY", 1.01],
     ["NICKEL", 2.05],
     ["DIME", 3.1],
@@ -99,5 +87,8 @@ checkCashRegister(3.26, 100, [
     ["TEN", 20],
     ["TWENTY", 60],
     ["ONE HUNDRED", 100]
-])
+]);
+
+console.log(x);
+
 
