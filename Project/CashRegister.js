@@ -23,9 +23,10 @@ function checkCashRegister(price, cash, cid) {
     let amount = 0;
     let wasInWhile = false;
 
-    copyCid.reverse();
 
-    copyCid.filter(elem => elem[1] !== 0).forEach(element => {
+    copyCid.reverse()
+    .filter(elem => elem[1] !== 0)
+    .forEach(element => {
         key = element[0];
         value = element[1] * 100;
 
