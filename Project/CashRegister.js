@@ -25,7 +25,7 @@ function checkCashRegister(price, cash, cid) {
 
     copyCid.reverse();
 
-    copyCid.filter(elem => elem[1] != 0).forEach(element => {
+    copyCid.filter(elem => elem[1] !== 0).forEach(element => {
         key = element[0];
         value = element[1] * 100;
 
@@ -51,13 +51,13 @@ function checkCashRegister(price, cash, cid) {
         }
     });
 
-    if (change == 0 && count === 1) {
+    if (change === 0 && count === 1) {
         status = "CLOSED"
         res = {
             status: status,
             change: cid
         };
-    } else if (change == 0 && count > 1) {
+    } else if (change === 0 && count > 1) {
         arr.map(elem => elem[1] / 100);
         status = "OPEN"
         res = {
