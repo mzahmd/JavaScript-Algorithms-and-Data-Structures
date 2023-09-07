@@ -15,29 +15,27 @@ const romanNumerals = {
 };
 
 function convertToRoman(num) {
-    let str = "";
-    while (num != 0) {
-        for (var key in romanNumerals) {
+    let result = "";
+    while (num !== 0) {
+        for (const key in romanNumerals) {
 
             if (num === romanNumerals[key]) {
-                str += key;
+                result += key;
                 num -= romanNumerals[key];
                 break;
             }
 
             if (num > romanNumerals[key]) {
-                str += key;
+                result += key;
                 num -= romanNumerals[key];
                 break;
             }
-
         }
     }
 
-    num = str;
-    // console.log(num);
-    return num;
+    return result;
 }
 
-
-convertToRoman(36);
+console.log(convertToRoman(36));
+console.log(convertToRoman(10));
+console.log(convertToRoman(15));

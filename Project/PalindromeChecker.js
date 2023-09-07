@@ -1,6 +1,5 @@
 function palindrome(str) {
-  str = str.replace(/\s/g, "");
-  str = str.toLowerCase();
+  str = str.replace(/\s/g, "").toLowerCase();
 
   for(let i = 0, firstIndex = 0, lastIndex = str.length-1; i<str.length/2; i++, firstIndex++, lastIndex--) {
     while(!(/[a-zA-Z0-9]/).test(str[firstIndex])) {
@@ -11,7 +10,7 @@ function palindrome(str) {
       lastIndex--;
     }
 
-    if(str[firstIndex] != str[lastIndex]) {
+    if(str[firstIndex] !== str[lastIndex]) {
       return false;
     }
   }

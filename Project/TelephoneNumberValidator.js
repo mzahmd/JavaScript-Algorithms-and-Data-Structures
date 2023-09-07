@@ -13,7 +13,7 @@ function telephoneCheck(str) {
 
   for (let i = 0; i < str.length; i++) {
 
-    if (str[i] === "(" && str[i + 4] != ")" || str[i] === ")" && str[i - 4] != "(") {
+    if (str[i] === "(" && str[i + 4] !== ")" || str[i] === ")" && str[i - 4] !== "(") {
       return false;
     }
 
@@ -36,7 +36,7 @@ function telephoneCheck(str) {
 
     if(mod === 3 && onlyTwice < 2) {
       onlyTwice++;
-      if((counter1 - counter2) != 0) {
+      if((counter1 - counter2) !== 0) {
         return false;
       }
       mod = 0;
@@ -54,7 +54,7 @@ function telephoneCheck(str) {
     return false;
   }
 
-  if (countDigits == 11 && str[0] != "1") {
+  if (countDigits === 11 && str[0] !== "1") {
     return false;
   }
 
@@ -67,8 +67,3 @@ console.log(telephoneCheck("1 456 789-4444")); // true
 console.log(telephoneCheck("1 555)555-5555")); // false
 console.log(telephoneCheck("(555)5(55?)-5555")); // false
 console.log(telephoneCheck("55 55-55-555-5")); // false
-
-
-// let a = (/\d/).test("2")
-// console.log(a);
-

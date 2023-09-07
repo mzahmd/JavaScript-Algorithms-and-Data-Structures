@@ -4,7 +4,6 @@ function rot13(str) {
   let result = "";
   const shift = 13;
   let index = 0;
-  let char;
   let newIndex;
 
   for (let i = 0; i < str.length; i++) {
@@ -12,20 +11,18 @@ function rot13(str) {
       result += str[i];
       continue;
     }
-    char = str[i];
-    index = alphabet.indexOf(char);
-    newIndex = index + 13;
+
+    index = alphabet.indexOf(str[i]);
+    newIndex = index + shift;
     if (newIndex >= alphabet.length) {
       newIndex = newIndex - alphabet.length;
     }
     result += alphabet[newIndex];
   }
 
-  // console.log(result);
-
   return result;
 }
 
-rot13("SERR PBQR PNZC"); // FREE CODE CAMP
-rot13("SERR CVMMN!"); // FREE PIZZA!
-rot13("SERR YBIR?"); // FREE LOVE?
+console.log(rot13("SERR PBQR PNZC")); // FREE CODE CAMP
+console.log(rot13("SERR CVMMN!")); // FREE PIZZA!
+console.log(rot13("SERR YBIR?")); // FREE LOVE?

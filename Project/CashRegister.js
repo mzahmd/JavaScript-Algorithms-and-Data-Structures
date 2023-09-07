@@ -38,7 +38,6 @@ function checkCashRegister(price, cash, cid) {
             wasInWhile = true;
         }
 
-
         if (wasInWhile) {
             arr.push([key, (money[key] / 100) * amount]);
         }
